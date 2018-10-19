@@ -1,4 +1,4 @@
-# FIR-group
+#FIR-group
 FIR-group University of Sussex
 
 Main aim: providing reading material and short code for new members. Extensive comple/working code should got to the H-E-L-P or AstroCast github
