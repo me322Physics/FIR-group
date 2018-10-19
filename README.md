@@ -11,4 +11,5 @@ FIR astonomy, star forming galaxies in far infrared, look at: http://adsabs.harv
 
 By going in the folder of an indiviudal group meber you should be able to see what the relevant reading material is for them. 
 
+Look at Raphs folder for a god example!
 
