@@ -1,10 +1,11 @@
-#FIR-group
+FIR-group
+
 FIR-group University of Sussex
 
-Main aim: providing reading material and short code for new members. Extensive comple/working code should got to the H-E-L-P or AstroCast github
+Main aim: providing reading material and short code for new members. Extensive complete/working code should go to the H-E-L-P or AstroCast github.
 
 
-Example:
+Example:\\
 FIR astonomy, star forming galaxies in far infrared, look at:
 http://adsabs.harvard.edu/abs/2012MNRAS.424.1614O
 
