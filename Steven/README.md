@@ -6,12 +6,13 @@
 
 ### Sentinel-2
 
-data = https://scihub.copernicus.eu/dhus/#/home
+data, select files by hand = https://scihub.copernicus.eu/dhus/#/home
+
+data, bulk download (if you know what you want): https://scihub.copernicus.eu/twiki/do/view/SciHubUserGuide/BatchScripting?redirectedfrom=SciHubUserGuide.8BatchScripting
 
 
-## FIR-astonomy extream star-birst galaxies
+## FIR-astronomy extream star-burst galaxies
 
-## stacking in confused maps
+## Stacking in confused maps
 
-## density maps
-FIR-group University of Sussex
+## Density maps
