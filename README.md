@@ -4,7 +4,7 @@ FIR-group University of Sussex
 
 Main aim: providing reading material and short code for new members. Each member of the group has their own folder with reading relevant to their work specifically. Extensive complete/working code should go to the [H-E-L-P](https://github.com/H-E-L-P) or AstroCast github.
 
-The Slack chanel for the FIR group is [https://sussex-fir.slack.com](sussex-fir.slack.com).
+The Slack chanel for the FIR group is [https://sussex-fir.slack.com](https://sussex-fir.slack.com).
 
 ## Bayesian Inference
 
