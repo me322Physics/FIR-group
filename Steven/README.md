@@ -43,8 +43,13 @@
 
 ## FIR-astronomy extream star-burst galaxies
 
+- http://adsabs.harvard.edu/abs/2018MNRAS.477.1099D
+
 ## Stacking in confused maps
 
 - Thesis: http://sro.sussex.ac.uk/77363/1/Duivenvoorden%2C%20Steven.pdf
 
 ## Density maps
+
+- http://adsabs.harvard.edu/abs/2016MNRAS.462..277D
+
