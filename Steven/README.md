@@ -29,8 +29,8 @@
 - data, select files by hand = https://scihub.copernicus.eu/dhus/#/home 
 - data, bulk download (if you know what you want): https://scihub.copernicus.eu/twiki/do/view/SciHubUserGuide/BatchScripting?redirectedfrom=SciHubUserGuide.8BatchScripting
 
--Tool: https://medium.com/sentinel-hub/land-cover-classification-with-eo-learn-part-1-2471e8098195
--Playground: https://apps.sentinel-hub.com/sentinel-playground/
+- Tool: https://medium.com/sentinel-hub/land-cover-classification-with-eo-learn-part-1-2471e8098195
+- Playground: https://apps.sentinel-hub.com/sentinel-playground/
 
 ### Forest clasification
 
