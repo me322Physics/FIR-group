@@ -12,3 +12,6 @@
 ## Code Examples and Tutorials
 1. https://lpdaac.usgs.gov/sites/default/files/public/elearning/GeoTIFF_MaskingPlottingAppEEARS_GeoTIFF_TS.html
 2. https://automating-gis-processes.github.io/CSC18/index.html
+
+## Code for ANN and CNN
+1. https://github.com/ASTRO-cast/keras_demo.git
