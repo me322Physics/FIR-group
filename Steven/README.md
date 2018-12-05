@@ -26,6 +26,7 @@
 - GP info: http://docs.pyro.ai/en/0.2.1-release/contrib.gp.html 
 - GP simple explanation: http://www.robots.ox.ac.uk/~sjrob/Pubs/philTransA_2012.pdf
 - GP how to pick the best GP: https://arxiv.org/pdf/1302.4922.pdf
+- GP http://www.gaussianprocess.org/gpml/chapters/RW4.pdf code: http://www.gaussianprocess.org/gpml/code/matlab/doc/
 
 ### Sentinel-2
 
@@ -40,6 +41,8 @@
 - Evaluation of Different Machine Learning Algorithms for Scalable Classification of Tree Types and Tree Species Based on Sentinel-2 Data https://www.mdpi.com/2072-4292/10/9/1419 This paper has good plots for Seninel-2 bands, and Tree SEDs. Uses SVM and Random forest. 
 
 - Statistical Machine Learning Methods and Remote Sensing for Sustainable Development Goals: A Review
+
+- http://science.sciencemag.org/content/sci/361/6407/1108.full.pdf
 
 ## FIR-astronomy extream star-burst galaxies
 
