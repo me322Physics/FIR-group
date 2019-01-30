@@ -15,6 +15,7 @@
 - https://landsat.usgs.gov/landsat-qa-tools 
 
 - the NASA Harmonized LandsatSentinel program: Landsat + sentinel-2 data on same 30m grid, only avaialbe in few locations https://hls.gsfc.nasa.gov/  
+- https://search.earthdata.nasa.gov/search/granules?p=C1427459680-USGS_EROS&tl=1531844635!4!!&q=Landsat&ok=Landsat
 
 #### BOKU
 
@@ -23,6 +24,7 @@
 
 #### GP
 - GP in earth science: https://aaai.org/ocs/index.php/AAAI/AAAI17/paper/view/14435/14067 
+- GP in earth science: https://pdfs.semanticscholar.org/5768/bf25a004cba9f3776f5ca6c2446c30904fc0.pdf
 - GP info: http://docs.pyro.ai/en/0.2.1-release/contrib.gp.html 
 - GP simple explanation: http://www.robots.ox.ac.uk/~sjrob/Pubs/philTransA_2012.pdf
 - GP how to pick the best GP: https://arxiv.org/pdf/1302.4922.pdf
@@ -35,6 +37,11 @@
 
 - Tool: https://medium.com/sentinel-hub/land-cover-classification-with-eo-learn-part-1-2471e8098195
 - Playground: https://apps.sentinel-hub.com/sentinel-playground/
+- comaprison Landsat and Sentinel-2
+
+### Gap-Filling in time series
+
+- https://www.biogeosciences.net/10/4055/2013/bg-10-4055-2013.pdf
 
 ### Forest clasification
 
@@ -43,6 +50,8 @@
 - Statistical Machine Learning Methods and Remote Sensing for Sustainable Development Goals: A Review
 
 - http://science.sciencemag.org/content/sci/361/6407/1108.full.pdf
+
+- Land use: https://www.mdpi.com/2072-4292/10/10/1648/htm
 
 ## FIR-astronomy extream star-burst galaxies
 
