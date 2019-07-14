@@ -1,0 +1,21 @@
+SIMPLE  =                    T / conforms to FITS standard
+BITPIX  =                  -32 / array data type
+NAXIS   =                    2 / number of array dimensions
+NAXIS1  =                  232
+NAXIS2  =                  232
+WCSAXES =                    2 / Number of coordinate axes
+CRPIX1  =               8080.0 / Pixel coordinate of reference point
+CRPIX2  =              -2306.0 / Pixel coordinate of reference point
+CDELT1  = -7.1666666666999E-05 / [deg] Coordinate increment at reference point
+CDELT2  = 7.16666666669999E-05 / [deg] Coordinate increment at reference point
+CUNIT1  = 'deg'                / Units of coordinate increment and value
+CUNIT2  = 'deg'                / Units of coordinate increment and value
+CTYPE1  = 'RA---TAN'           / Right ascension, gnomonic projection
+CTYPE2  = 'DEC--TAN'           / Declination, gnomonic projection
+CRVAL1  =             218.0238 / [deg] Coordinate value at reference point
+CRVAL2  =             34.27986 / [deg] Coordinate value at reference point
+LONPOLE =                180.0 / [deg] Native longitude of celestial pole
+LATPOLE =             34.27986 / [deg] Native latitude of celestial pole
+RADESYS = 'ICRS'               / Equatorial coordinate system
+EQUINOX =               2000.0
+END
