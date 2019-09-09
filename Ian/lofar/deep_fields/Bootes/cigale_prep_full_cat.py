@@ -25,15 +25,6 @@ def pop_list(ls,indices):
 # In[6]:
 
 
-aim_cat = Table.read('../../../../../HELP/dmu_products/dmu28/dmu28_Lockman-SWIRE/data/zspec/best_extcor_zspec/Lockman-SWIRE_cigale_best_extcor_zspec_20180219.fits')
-
-
-# In[7]:
-
-
-aim_cat
-
-
 # In[3]:
 
 
@@ -41,9 +32,6 @@ photz = Table.read('data/photz/Bootes_opt_spitzer_merged_vac_opt3as_irac4as_all_
 
 
 # In[4]:
-
-
-photz[0]
 
 
 # In[5]:
@@ -98,7 +86,6 @@ for n,line in enumerate(translate):
     filt_name = ''
     for m,filt in enumerate(filters):
         if m+1==filt_num:
-            print(filt)
             filt_name = filt[1]
     
     if 'err' in colname:
