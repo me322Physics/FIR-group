@@ -58,7 +58,7 @@ for n,line in enumerate(filters):
         filters[n][-1] = filters[n][-1].replace('\n','')
     filters[n] = pop_list(filters[n],[1 for m in range(len(filters[n])-2)])
     filters[n][-1] = filters[n][-1].replace('.filter','')
-
+filters = filters[2:]
 
 # In[8]:
 
