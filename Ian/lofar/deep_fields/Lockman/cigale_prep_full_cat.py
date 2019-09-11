@@ -58,7 +58,7 @@ for n,line in enumerate(filters):
         filters[n][-1] = filters[n][-1].replace('\n','')
     filters[n] = pop_list(filters[n],[1 for m in range(len(filters[n])-2)])
     filters[n][-1] = filters[n][-1].replace('.filter','')
-filters = filters[2:]
+
 
 # In[8]:
 
@@ -87,13 +87,13 @@ for n,line in enumerate(translate):
     filt_num = int(line[1])
     filt_name = ''
     for m,filt in enumerate(filters):
-        if m+1==filt_num:
+        if int(filt[0])==filt_num:
             filt_name = filt[1]
-    
+    if filt_name=='':
+        continue
     if 'err' in colname:
         filt_name = filt_name+'_err'
-    #print(colname)
-    #print(filt_name)
+
     cigale_input.rename_column(colname,filt_name)
 
 
