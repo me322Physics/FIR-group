@@ -28,8 +28,8 @@ def pop_list(ls,indices):
 # In[3]:
 
 
-#photz = Table.read('data/photz/Bootes_opt_spitzer_merged_vac_opt3as_irac4as_all_hpx_public.fits')
-photz =Table.read('/beegfs/lofar/deepfields/science_ready_catalogs/Bootes_opt_spitzer_merged_vac_opt3as_irac4as_all_hpx_public.fits')
+#photz = Table.read('data/photz/LH_opt_spitzer_merged_vac_opt3as_irac4as_all_hpx_public.fits')
+photz =Table.read('/beegfs/lofar/deepfields/science_ready_catalogs/LH_opt_spitzer_merged_vac_opt3as_irac4as_all_hpx_public.fits')
 
 # In[4]:
 
@@ -43,8 +43,8 @@ cigale_input = photz.copy()
 # In[7]:
 
 
-#filters_file = open('data/photz/filters/filter.bootes_mbrown_2014a.res.info','r')
-filters_file = open('/beegfs/lofar/deepfields/science_ready_catalogs/filter_information/filter.bootes_mbrown_2014a.res.info','r')
+#filters_file = open('data/photz/filters/Lockman-SWIRE_filters.res.info','r')
+filters_file = open('/beegfs/lofar/deepfields/science_ready_catalogs/filter_information/Lockman-SWIRE_filters.res.info','r')
 filters = []
 for line in filters_file:
     temp = line.split(' ')
@@ -58,13 +58,13 @@ for n,line in enumerate(filters):
         filters[n][-1] = filters[n][-1].replace('\n','')
     filters[n] = pop_list(filters[n],[1 for m in range(len(filters[n])-2)])
     filters[n][-1] = filters[n][-1].replace('.filter','')
-
+filters = filters[2:]
 
 # In[8]:
 
 
-#translate_file = open('data/photz/filters/brown.zphot.2014.translate','r')
-translate_file = open('/beegfs/lofar/deepfields/science_ready_catalogs/filter_information/brown.zphot.2014.translate','r')
+#translate_file = open('data/photz/filters/LH.filter.translate','r')
+translate_file = open('/beegfs/lofar/deepfields/science_ready_catalogs/filter_information/LH.filter.translate','r')
 translate = []
 for line in translate_file:
     if '#' in line:
@@ -87,13 +87,13 @@ for n,line in enumerate(translate):
     filt_num = int(line[1])
     filt_name = ''
     for m,filt in enumerate(filters):
-        if m+1==filt_num:
+        if int(filt[0])==filt_num:
             filt_name = filt[1]
-    
+    if filt_name=='':
+        continue
     if 'err' in colname:
         filt_name = filt_name+'_err'
-    #print(colname)
-    #print(filt_name)
+
     cigale_input.rename_column(colname,filt_name)
 
 
