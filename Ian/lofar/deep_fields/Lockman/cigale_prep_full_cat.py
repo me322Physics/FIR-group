@@ -63,8 +63,8 @@ filters = filters[2:]
 # In[8]:
 
 
-#translate_file = open('data/photz/filters/LH.filter.translate','r')
-translate_file = open('/beegfs/lofar/deepfields/science_ready_catalogs/filter_information/LH.filter.translate','r')
+translate_file = open('data/photz/filters/LH.filter.translate','r')
+#translate_file = open('/beegfs/lofar/deepfields/science_ready_catalogs/filter_information/LH.filter.translate','r')
 translate = []
 for line in translate_file:
     if '#' in line:
