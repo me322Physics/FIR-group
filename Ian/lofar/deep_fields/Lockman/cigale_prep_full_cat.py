@@ -106,7 +106,7 @@ cigale_input.rename_column('z1_median','redshift')
 # In[12]:
 
 
-Table.write(cigale_input,'cigale_input_Bootes.fits',format='fits',overwrite=True)
+Table.write(cigale_input,'cigale_input_Lockman.fits',format='fits',overwrite=True)
 
 
 # In[ ]:
