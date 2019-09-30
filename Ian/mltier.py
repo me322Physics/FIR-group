@@ -64,7 +64,7 @@ def gen_rand_cat_inMOC(n,RAmax,RAmin,DECmax,DECmin,catmoc):
     
     '''
     
-    '''randfieldinmoc = 0
+    randfieldinmoc = 0
     randfieldra = []
     randfielddec = []
     randfield = []
@@ -82,41 +82,7 @@ def gen_rand_cat_inMOC(n,RAmax,RAmin,DECmax,DECmin,catmoc):
 
         n = n - sum(randfieldtempinmoc)
 
-    return(SkyCoord(randfieldra,randfielddec,unit='deg'))'''
-
-    moc_area = catmoc.area_sq_deg
-    area = (abs(RAmax-RAmin)) * (abs(DECmax-DECmin))
-    ratio = area/moc_area
-    if ratio<1:
-        print('area ratio is less than 1 so something is wrong')
-    print('ratio of the random generation area compared to the moc area is: {}'.format(area/moc_area))
-    ra = []
-    dec = []
-    #randcoords = generate_random_catalogue(int(n*5*ratio),RAmin,RAmax,DECmin,DECmax)
-    #randra  = randcoords.ra.value
-    #randdec = randcoords.dec.value
-    randra = np.random.uniform(RAmin, RAmax, int(2*n*ratio))
-    randdec = np.random.uniform(DECmin, DECmax, int(2*n*ratio))
-    mask = inMoc(randra,randdec,catmoc)
-    if np.sum(mask)>=n:
-        coords = SkyCoord(randra[mask][:n],randdec[mask][:n],unit='deg')
-        assert len(coords)==n,print('the number of coordinates generated is not equal to the number of radio sources in the moc. Something is wrong')
-            
-        return(coords)
-    if np.sum(mask)<n:
-        while len(ra)<n:
-            ra = np.append(ra,randra[mask])
-            dec = np.append(dec,randdec[mask])
-            randcoords = generate_random_catalogue(n*5*ratio,RAmin,RAmax,DECmin,DECmax)
-            randra  = randcoords.ra.value
-            randdec = randcoords.dec.value
-            mask = inMoc(randra,randdec,catmoc)
-            ra = np.append(ra,randra[mask])
-            dec = np.append(dec,randdec[mask])
-
-        coords = SkyCoord(ra[:n],dec[:n],unit='deg')
-        return(coords)
-        
+    return(SkyCoord(randfieldra,randfielddec,unit='deg'))
 
 
 ## Sky functions
