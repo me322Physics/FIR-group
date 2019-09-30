@@ -28,8 +28,8 @@ def pop_list(ls,indices):
 # In[3]:
 
 
-#photz = Table.read('data/photz/LH_opt_spitzer_merged_vac_opt3as_irac4as_all_hpx_public.fits')
-photz =Table.read('/beegfs/lofar/deepfields/science_ready_catalogs/LH_opt_spitzer_merged_vac_opt3as_irac4as_all_hpx_public.fits')
+photz = Table.read('data/photz/LH_opt_spitzer_merged_vac_opt3as_irac4as_all_hpx_public.fits')
+#photz =Table.read('/beegfs/lofar/deepfields/science_ready_catalogs/LH_opt_spitzer_merged_vac_opt3as_irac4as_all_hpx_public.fits')
 
 # In[4]:
 
