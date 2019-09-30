@@ -43,8 +43,8 @@ cigale_input = photz.copy()
 # In[7]:
 
 
-#filters_file = open('data/photz/filters/Lockman-SWIRE_filters.res.info','r')
-filters_file = open('/beegfs/lofar/deepfields/science_ready_catalogs/filter_information/Lockman-SWIRE_filters.res.info','r')
+filters_file = open('data/photz/filters/Lockman-SWIRE_filters.res.info','r')
+#filters_file = open('/beegfs/lofar/deepfields/science_ready_catalogs/filter_information/Lockman-SWIRE_filters.res.info','r')
 filters = []
 for line in filters_file:
     temp = line.split(' ')
