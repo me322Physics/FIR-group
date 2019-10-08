@@ -36,41 +36,57 @@ import pyvo as vo
 print('finished importing modules')
 
 
-taskid = np.int(os.environ['SGE_TASK_ID'])
+taskid = np.int(os.environ['SGE_TASK_ID'])-1
 #taskid=3
 print('taskid is: {}'.format(taskid))
 
 
 #Read in the LOFAR data both optical and radio
-lofar_rad = Table.read('data/radio/EN1_ML_RUN_fin_overlap_srl_workflow.fits')
-lofar_opt = Table.read('data/optical/EN1_MASTER_opt_spitzer_merged_cedit_apcorr.fits')
-lofar_opt.rename_column('ALPHA_J2000','ra')
-lofar_opt.rename_column('DELTA_J2000','dec')
-#merge the optical and radio catalogue to find out which optical sources need crossmatching to HELP
-mask = ~np.isnan(lofar_rad['lr_index_fin'])
-lofar = hstack([lofar_rad[mask],lofar_opt[lofar_rad[mask]['lr_index_fin'].astype(int)]])
-lofar_rad = 0
-lofar_opt = 0
+lofar = Table.read('data/data_release/final_cross_match_catalogue-v0.1.fits')
+mask = (~np.isnan(lofar['F_SPIRE_250'])) | (~np.isnan(lofar['F_SPIRE_350'])) | (~np.isnan(lofar['F_SPIRE_500']))
+lofar = lofar[~mask]
 
-ra = lofar['ra'][[taskid]]
-dec = lofar['dec'][[taskid]]
+print(len(lofar))
 
-columns = 'ra','dec','help_id','f_spire_250','ferr_spire_250','flag_spire_250','f_spire_350','ferr_spire_350','flag_spire_350','f_spire_500','ferr_spire_500','flag_spire_500','flag_optnir_det','f_mips_24'
+if taskid*10>len(lofar):
+    print('Task id is too high. Trying to run code on more sources than exist')
+    sys.exit()
+ind_low = taskid*10
+if taskid*10+9>len(lofar):
+    ind_up = len(lofar)-1
+else:
+    ind_up = taskid*10+10
+ras = lofar['optRA'][ind_low:ind_up]
+mask = np.isnan(ras)
+ras[mask] = lofar['RA'][ind_low:ind_up][mask]
+
+decs = lofar['optDec'][ind_low:ind_up]
+mask = np.isnan(decs)
+decs[mask] = lofar['DEC'][ind_low:ind_up][mask]
+
+ids = lofar['Source_Name'][ind_low:ind_up]
+
+print(len(ras))
+
+columns = 'ra','dec','help_id','flag_optnir_det','f_mips_24'
 masterlist = Table.read('../../../../../HELP/dmu_products/dmu32/dmu32_ELAIS-N1/data/ELAIS-N1_20171020.fits')
 help_masterlist = masterlist[columns]
 masterlist = 0
 
-lofar_coords = SkyCoord(ra,dec,unit='deg')
+'''lofar_coords = SkyCoord(ra,dec,unit='deg')
 help_coords = SkyCoord(help_masterlist['ra'],help_masterlist['dec'],unit='deg')
 radius = 2
 idx_help, idx_lofar, d2d, d3d = lofar_coords.search_around_sky(
-    help_coords, radius*u.arcsec)
+    help_coords, radius*u.arcsec)'''
 
 prior_mask = (help_masterlist['flag_optnir_det']>=5) & (help_masterlist['f_mips_24']>20)
 prior_cat = help_masterlist[prior_mask]
-xid_rerun = Column(name='XID_rerun',data=np.zeros(len(prior_cat))-99)
-prior_cat.add_column(xid_rerun)
-                        
+for n,pos in enumerate(ras):
+    prior_cat.add_row([ras[n],decs[n],ids[n],-99,np.nan])
+#xid_rerun = Column(name='XID_rerun',data=np.zeros(len(prior_cat))-99)
+#prior_cat.add_column(xid_rerun)
+
+'''
 #if there is only one crossmatch within the search radius then match them if the source is in the prior list
 #otherwise add the ra and dec of the lofar optical counterpart to the prior list
 XID_rerun = []
@@ -116,7 +132,7 @@ if False in XID_rerun:
     else:
         os.mkdir('data/fir_v2/xidplus_run_{}'.format(taskid))
     Table.write(lofar_fir,'data/fir_v2/xidplus_run_{}/lofar_xidplus_fir_{}.fits'.format(taskid,taskid),overwrite=True)
-
+'''
 
 
 #Read in the herschel images
@@ -158,7 +174,7 @@ hdulist.close()
 
 from astropy.coordinates import SkyCoord
 from astropy import units as u
-c = SkyCoord(ra=ra, dec=dec)  
+c = SkyCoord(ra=ras*u.degree, dec=decs*u.degree)  
 import pymoc
 moc=pymoc.util.catalog.catalog_to_moc(c,60,15)
 
@@ -207,6 +223,9 @@ prior250.upper_lim_map()
 prior350.upper_lim_map()
 prior500.upper_lim_map()
 
+print('fitting '+ str(prior250.nsrc)+' sources \n')
+print('using ' +  str(prior250.snpix)+', '+ str(prior350.snpix)+' and '+ str(prior500.snpix)+' pixels')
+
 from xidplus.stan_fit import SPIRE
 fit=SPIRE.all_bands(prior250,prior350,prior500,iter=1000)
 
@@ -216,7 +235,10 @@ import xidplus.catalogue as cat
 SPIRE_cat=cat.create_SPIRE_cat(posterior,priors[0],priors[1],priors[2])
 SPIRE_cat = Table.read(SPIRE_cat)
 
-mask = SPIRE_cat['HELP_ID']=='lofar'
+mask = ['ILTJ' in SPIRE_cat['HELP_ID'][i] for i in range(len(SPIRE_cat))]
+SPIRE_cat = SPIRE_cat[mask]
+
+'''mask = SPIRE_cat['HELP_ID']=='lofar'
 mask_lofar = lofar['ra']==ra
 mask_pcat = prior_cat['help_id']=='lofar'
 SPIRE_cat = SPIRE_cat[mask]
@@ -224,10 +246,11 @@ SPIRE_cat.add_columns([prior_cat['f_mips_24'][mask_pcat],prior_cat['flag_optnir_
 lofar_fir = hstack([lofar[mask_lofar],SPIRE_cat])
 XID_rerun_col = Column(data=XID_rerun,name='XID_rerun',dtype=bool)
 source_type_col = Column(data=source_type,name='source_type',dtype=str)
-lofar_fir.add_columns([XID_rerun_col,source_type_col])
+lofar_fir.add_columns([XID_rerun_col,source_type_col])'''
    
 if os.path.exists('data/fir_v2/xidplus_run_{}'.format(taskid))==True:()
 else:
     os.mkdir('data/fir_v2/xidplus_run_{}'.format(taskid))
-Table.write(lofar_fir,'data/fir_v2/xidplus_run_{}/lofar_xidplus_fir_{}_rerun.fits'.format(taskid,taskid),overwrite=True)
+Table.write(SPIRE_cat,'data/fir_v2/xidplus_run_{}/lofar_xidplus_fir_{}_rerun.fits'.format(taskid,taskid),overwrite=True)
 
+xidplus.save([prior250,prior350,prior500],posterior,'data/fir_v2/xidplus_run_{}/lofar_xidplus_fir_{}_rerun.pkl'.format(taskid,taskid))
